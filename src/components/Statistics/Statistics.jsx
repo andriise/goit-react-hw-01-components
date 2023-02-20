@@ -4,11 +4,10 @@ import {
   StatisticsList,
   StatisticsItem,
 } from './Statistics.styled';
-export const Statistics = ({ items }) => {
+export const Statistics = ({ title, items }) => {
   return (
     <StatisticsSection className="statistics">
-      <h2 className="title">Upload stats</h2>
-
+      {title && <title>{title}</title>}
       <StatisticsList>
         {items.map(item => {
           return (
