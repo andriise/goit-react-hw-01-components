@@ -1,27 +1,43 @@
+import PropTypes from 'prop-types';
+import { ProfileCard, StatsList, ProfileSection } from './Profile.styled';
 export const Profile = ({ info }) => {
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={info.avatar} alt={info.name} className="avatar" />
-        <p className="name">{info.username}</p>
-        <p className="tag">@{info.tag}</p>
-        <p className="location">{info.location}</p>
-      </div>
+    <ProfileCard>
+      <ProfileSection>
+        <img src={info.avatar} alt={info.name} />
+        <p>{info.username}</p>
+        <p>@{info.tag}</p>
+        <p>{info.location}</p>
+      </ProfileSection>
 
-      <ul className="stats">
+      <StatsList>
         <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{info.stats.followers}</span>
+          <span>Followers</span>
+          <span> {info.stats.followers}</span>
         </li>
         <li>
-          <span className="label">Views</span>
-          <span className="quantity">{info.stats.views}</span>
+          <span>Views</span>
+          <span> {info.stats.views}</span>
         </li>
         <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{info.stats.likes}</span>
+          <span>Likes</span>
+          <span> {info.stats.likes}</span>
         </li>
-      </ul>
-    </div>
+      </StatsList>
+    </ProfileCard>
   );
+};
+
+Profile.propTypes = {
+  info: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    tag: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    stats: PropTypes.shape({
+      followers: PropTypes.number.isRequired,
+      views: PropTypes.number.isRequired,
+      likes: PropTypes.number.isRequired,
+    }).isRequired,
+  }),
 };
